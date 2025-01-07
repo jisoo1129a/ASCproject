@@ -1,0 +1,24 @@
+#home-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#top{
+    margin: 0px;
+    margin-bottom: 0px;
+}
+#top img{
+    width: 100%;
+}
+.text-box{
+    padding: 4%;
+    border-left: black solid 2px;
+    margin-bottom: 5px;
+}
+#home h2{
+    background-color: #00468B;
+    color: white;
+    margin: 0px; padding: 10px;
+    transform: translateY(-5px);
+    font-size: xx-large;
+
+}

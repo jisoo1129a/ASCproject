@@ -1,0 +1,45 @@
+<div id="home">
+    <div id="top">
+        <img src="./pictures/fryeburgBackground.jpeg" alt="fa" />
+    </div>
+    <h2>Extracurricular Activities in FA</h2>
+    <div id="home-content"></div>
+
+    <script>
+        const homeContent = document.getElementById("home-content");
+        const list = {
+            0:{
+                title: "About Extracurriculars at FA:",
+                content: "Fryeburg Academy has a wide array of extracurriculars—from a Fiber Arts Club to a \
+            successful Robotics Team—some meet during Lunch periods, while others meet after school.\
+            Most clubs meet once a week, and are an easy way to meet new people who share similar interests!"
+            },
+
+            1:{
+                title: "How Extracurriculars Compliment Academics:",
+                content: "Extracurriculars allow students to pursue interests that they would not \
+            be able to in class. With the vast number of extracurriculars available at FA, \
+            you are bound to find something which you love: something that drives and motivates you, \
+            or something that simply brings you joy. Extracurriculars allow you to find your interests, \
+            to cultivate them, and possibly even to set you down a path that will have a lasting, positive impact on your future."},
+            2:{
+                title: "Exploring What You Love:",
+                content: "Not only are Extracurriculars a way to pursue what you love, \
+            but they can also complement your studies. If you are looking to get better at mathematics, \
+            you can join the Math Team. If you want to enhance your artistic abilities, \
+            there are numerous opportunities both musical and visual, from the Fryeburg Academy Big Band to learning Ceramics. \
+            Every opportunity to pursue your interests outside of class improves your college resume, \
+            makes you better prepared for the future, and breathes extra joy into your academic experience."}
+        };
+
+        let li = [];
+
+        for(let i = 0; i < 3; i++)
+        {
+            let text = `<div class="text-box text-box-${i}"><h3>${list[i].title}</h3><p>${list[i].content}</p></div>`;
+            li.push(text);
+        }
+
+        homeContent.innerHTML = li.join('');
+    </script>
+</div>

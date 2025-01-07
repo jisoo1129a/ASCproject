@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playpen+Sans:wght@100..800&display=swap');
+body{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-family: "EB Garamond", serif;
+    font-style: normal;
+}
+h1, h2, h3, h4, p{
+    font-family: "EB Garamond", serif;
+}
+#title{
+    background-color: #00468B;
+    color: white;
+    width: 100%;
+    margin: 0px; padding: 10px;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 56px 85% 10%;
+    align-items: center;
+    z-index: 10;
+}
+#title img{
+    width: 56px;
+}
+#title h1{
+    color: white;
+    font-size: 220%;
+    padding-left: 10px;
+}
+#title a{
+    color: white;
+}
+
+#page-content{
+    border-left: solid 2px #a8b7c6;
+}
+#page-content p
+{
+    font-size: 150%;
+    padding-left: 20%; padding-right: 20%;
+    font-family: "EB Garamond", serif;
+}
+#club-title{
+    text-decoration: underline;
+    background-color: #00468B;
+    color: white;
+    margin: 0px;
+    font-size: 280%;
+    padding: 10px;
+}
+#aboutUs{
+    font-size: 270%;
+    text-align: center;
+}
+#aboutUs_p
+{
+    text-align: center;
+    font-weight: 400;
+}
+#event_outer h2{
+    font-size: 200%;
+    color: white;
+    text-align: center;
+    margin: 0px;
+}
+#event_outer .inner{
+    background-color: white;
+    margin: 0px;
+    display: inline-block;
+    width: 100%;
+}
+#event_outer{
+    background-color: #002D5B;
+    margin: 0px;
+    margin-left: 5%; margin-right: 5%;
+    padding: 20px;
+}
+.mid{
+    overflow: hidden;
+}
+.middleBox{
+    white-space: nowrap;
+    transition: all 0.5s;
+}
+#project_outer{
+    background-color: #00468B;
+    margin: 0px;
+    margin-left: 5%; margin-right: 5%;
+}
+
+#project_outer .inner{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+#project_outer .block{
+    padding: 5%;
+    width: 90%;
+    transition: all 0.5s;
+}
+#project_outer .block-clicked{
+    position: absolute;
+    z-index: 10;
+    padding: 15px;
+    background-color: grey;
+    left: 0;
+    transition: all 0.5s;
+}
+#project_outer h2{
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 200%;
+}
+#project_outer h4{
+    color: white;
+    text-align: center;
+    border-bottom: white solid 3px;
+    margin-left: 10px;
+    font-size: 25px;
+}
+#project_outer p{
+    color: white;
+    text-align: center;
+}
+
+
+
+.inner h4{
+    font-size: 170%;
+    padding-left: 5%
+}
+#page{
+    display: grid;
+    grid-template-columns: 13% 1fr;
+}
+#club-list ul{
+    list-style-type: none;
+}
+
+#frq_outer{
+    margin: 0px;
+    margin-left: 5%; margin-right: 5%;
+}
+h2{
+    text-align: center;
+    padding: 10px;
+    font-size: 200%;
+}
+
+
+#footer{
+    background-color: #002D5B;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+#footer p{
+    text-align: center;
+}
