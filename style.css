@@ -1,69 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playpen+Sans:wght@100..800&display=swap');
 body{
     margin: 0;
 }
 a{
     text-decoration: none;
     color: black;
-    font-family: "EB Garamond", serif;
+    font-family: "adobe-garamond-pro", serif;
+    font-weight: 400;
     font-style: normal;
 }
 h1, h2, h3, h4, p{
-    font-family: "EB Garamond", serif;
+    font-family: "adobe-garamond-pro", serif;
+    font-weight: 400;
+    font-style: normal;
 }
-#title{
-    background-color: #00468B;
-    color: white;
-    width: 100%;
-    margin: 0px; padding: 10px;
-    position: fixed;
-    display: grid;
-    grid-template-columns: 56px 85% 10%;
-    align-items: center;
-    z-index: 10;
-}
-#title img{
-    width: 56px;
-}
-#title h1{
-    color: white;
-    font-size: 220%;
-    padding-left: 10px;
-}
-#title a{
-    color: white;
-}
-
-#page-content{
-    border-left: solid 2px #a8b7c6;
-}
-#page-content p
+#topPic
 {
-    font-size: 150%;
-    padding-left: 20%; padding-right: 20%;
-    font-family: "EB Garamond", serif;
+    height: 25%;
+    object-fit: cover;
 }
 #club-title{
     text-decoration: underline;
-    background-color: #00468B;
+    background-color: #002D5B;
     color: white;
     margin: 0px;
     font-size: 280%;
     padding: 10px;
+    padding-left: 15%;
 }
-#aboutUs{
-    font-size: 270%;
-    text-align: center;
+#page-content
+{
+    margin: 15%;
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    align-content: center;
 }
-#aboutUs_p
+#page-content #contact img{
+    width: 70%;
+    border: #63554F solid 1px;
+}
+#page-content #left-block
+{
+    border-left: #63554F solid 1px;
+    padding-left: 10%;
+}
+
+#aboutUs p
 {
     text-align: center;
+    font-size: 16pt;
+    color: #63554F;
+    font-family: "pt-sans", sans-serif;
     font-weight: 400;
+    font-style: normal;
+}
+
+#meetInfo h3, #aboutUs h3, #contact h3, #project_outer h2, #evn_block h2
+{
+    font-family: "adobe-garamond-pro", serif;
+    color: #002D5B;
+    font-size: 35px;
+    text-align: left;
+    font-weight: 400;
+    padding-left: 5%;
+}
+#meetInfo p, #contact p{
+    font-family: "pt-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 #event_outer h2{
-    font-size: 200%;
+    font-size: 35px;
     color: white;
-    text-align: center;
+    text-align: left;
     margin: 0px;
 }
 #event_outer .inner{
@@ -71,6 +80,18 @@ h1, h2, h3, h4, p{
     margin: 0px;
     display: inline-block;
     width: 100%;
+    text-align: center;
+}
+#event_outer .inner h4{
+    font-family: "adobe-garamond-pro", serif;
+    color: #002D5B;
+    font-size: 25pt;
+}
+#event_outer .inner p{
+    font-family: "pt-sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18pt;
 }
 #event_outer{
     background-color: #002D5B;
@@ -86,15 +107,10 @@ h1, h2, h3, h4, p{
     transition: all 0.5s;
 }
 #project_outer{
-    background-color: #00468B;
     margin: 0px;
-    margin-left: 5%; margin-right: 5%;
 }
 
-#project_outer .inner{
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
+
 #project_outer .block{
     padding: 5%;
     width: 90%;
@@ -104,42 +120,31 @@ h1, h2, h3, h4, p{
     position: absolute;
     z-index: 10;
     padding: 15px;
-    background-color: grey;
-    left: 0;
+    background-color: #002D5B;
+    color: white;
+    left: 8%;
     transition: all 0.5s;
 }
-#project_outer h2{
+#project_outer .block-clicked h4{
     color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 200%;
+    border-bottom: white solid 3px;
 }
 #project_outer h4{
-    color: white;
+    color: #002D5B;
     text-align: center;
-    border-bottom: white solid 3px;
+    border-bottom: #002D5B solid 3px;
     margin-left: 10px;
     font-size: 25px;
 }
 #project_outer p{
-    color: white;
+    color: #002D5B;
     text-align: center;
 }
 
 
-
-.inner h4{
-    font-size: 170%;
-    padding-left: 5%
-}
-#page{
-    display: grid;
-    grid-template-columns: 13% 1fr;
-}
 #club-list ul{
     list-style-type: none;
 }
-
 #frq_outer{
     margin: 0px;
     margin-left: 5%; margin-right: 5%;
@@ -155,7 +160,9 @@ h2{
     background-color: #002D5B;
     color: white;
     margin: 0;
-    padding: 20px;
+    padding-top: 20px; padding-bottom: 20px;
+    overflow: hidden;
+    width: 100%;
 }
 #footer p{
     text-align: center;

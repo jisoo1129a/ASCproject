@@ -1,18 +1,32 @@
 <div id="home">
     <div id="top">
-        <img src="./pictures/fryeburgBackground.jpeg" alt="fa" />
+        <img id="top_img" src="./pictures/fryeburgBackground.jpeg" alt="fa" />
     </div>
     <h2>Extracurricular Activities in FA</h2>
+    <div id="core_value">
+        <h3>Core Values That Guide Us:</h3>
+        <h4>
+        COMMUNITY | RESPECT | DIVERSITY <br>
+        CHALLENGE | SUPPORT | GROWTH </h4>
+        <p>
+            Fryeburg Academy has a wide array of extracurriculars—from a Fiber Arts Club to a 
+            successful Robotics Team—some meet during Lunch periods, while others meet after school.
+            Most clubs meet once a week, and are an easy way to meet new people who share similar interests!
+        </p>
+    </div>
+    
     <div id="home-content"></div>
 
     <script>
+
         const homeContent = document.getElementById("home-content");
         const list = {
             0:{
                 title: "About Extracurriculars at FA:",
                 content: "Fryeburg Academy has a wide array of extracurriculars—from a Fiber Arts Club to a \
             successful Robotics Team—some meet during Lunch periods, while others meet after school.\
-            Most clubs meet once a week, and are an easy way to meet new people who share similar interests!"
+            Most clubs meet once a week, and are an easy way to meet new people who share similar interests!",
+            url: "./pictures/MUN2_0.png"
             },
 
             1:{
@@ -21,7 +35,9 @@
             be able to in class. With the vast number of extracurriculars available at FA, \
             you are bound to find something which you love: something that drives and motivates you, \
             or something that simply brings you joy. Extracurriculars allow you to find your interests, \
-            to cultivate them, and possibly even to set you down a path that will have a lasting, positive impact on your future."},
+            to cultivate them, and possibly even to set you down a path that will have a lasting, positive impact on your future.",
+            url: "./pictures/MUN2_0.png"
+        },
             2:{
                 title: "Exploring What You Love:",
                 content: "Not only are Extracurriculars a way to pursue what you love, \
@@ -29,14 +45,16 @@
             you can join the Math Team. If you want to enhance your artistic abilities, \
             there are numerous opportunities both musical and visual, from the Fryeburg Academy Big Band to learning Ceramics. \
             Every opportunity to pursue your interests outside of class improves your college resume, \
-            makes you better prepared for the future, and breathes extra joy into your academic experience."}
+            makes you better prepared for the future, and breathes extra joy into your academic experience.",
+            url: "./pictures/MUN2_0.png"
+        }
         };
 
         let li = [];
 
-        for(let i = 0; i < 3; i++)
+        for(let i = 1; i < 3; i++)
         {
-            let text = `<div class="text-box text-box-${i}"><h3>${list[i].title}</h3><p>${list[i].content}</p></div>`;
+            let text = `<div class="home-block"><img src="${list[i].url}" alt="pic"/><div class="text-box text-box-${i}"><h3>${list[i].title}</h3><p>${list[i].content}</p></div></div>`;
             li.push(text);
         }
 

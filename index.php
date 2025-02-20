@@ -1,14 +1,29 @@
 <?php
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
+
+    $login_state = '';
+    $btn = '';
+    if(isset($_POST['logIn']))
+    {
+        $login_state = $_POST['user_id'];
+    }
+    if($_POST['logIn'] == 'loged_out')
+    {
+        $login_state = '';
+    }
+    if($login_state != '')
+    {
+        $btn = '<div><button><a href="add_club.php">Add club</a></button>
+        <button><a href="edit_info.php">Edit information</button>
+        <button><a href="delete_club.php">Delete Club</a></button></div>';
+    }
+
+    //id, supervise
+
     $sql = "SELECT * FROM clubs;";
     $result = mysqli_query($conn, $sql);
-
-    $list = '<button><a href="add_club.php">Add club</a></button>
-        <button><a href="delete_club.php">Delete Club</a></button>';
-    while($row = mysqli_fetch_array($result))
-    {
-        $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$row['cName']}</a></li>";
-    }
+    
+    
     $topPic = '';
     $title = '';
     $aboutUs = '';
@@ -54,7 +69,7 @@
                     'des' => $eRow['description']
                 );
 
-                $events = $events."<div id='inner_{$i}' class=\"inner\"><h4>{$e['name']}</h4><p>{$e['des']}</p><p>planned date: {$e['date']}</p></div>";
+                $events = $events."<div id='inner_{$i}' class=\"inner\"><h4>{$e['name']}</h4><p>{$e['des']}</p><p>Date: {$e['date']}</p></div>";
                 if($i == 0)
                 {
                     $radio = $radio."<input type='radio' name='slide' class='radio' id='radio_{$i}' checked>";
@@ -63,7 +78,7 @@
 
                 $i++;
             }
-            $event = '<div id="event_outer"><h2>Club Events</h2><div class="mid"><div id="eBox" class="middleBox">'.$events.'</div></div>'.$radio.'</div>';
+            $event = '<h2>Club Events</h2><div id="event_outer"><div class="mid"><div id="eBox" class="middleBox">'.$events.'</div></div>'.$radio.'</div>';
         }
 
         if($row['project'] == 1)
@@ -83,23 +98,15 @@
                 $i++;
             }
             $p = '';
-            for($i = 1; $i < count($projects); $i++)
+            for($i = 0; $i < count($projects); $i++)
             {
-                if($i % 2 == 1)
-                {
-                    $p = $p."<div class='inner'>{$projects[$i - 1]}{$projects[$i]}</div>";
-                }
-                else if($i == count($projects) - 1 && $i % 2 == 0)
-                {
-                    $p = $p."{$projects[$i]}";
-                }
+                $p = $p."<div class='inner'>{$projects[$i]}</div>";
             }
 
             $project = "<div id='project_outer'>
-                <h2><u>Projects</u></h2>
+                <h2>Projects</h2>
                     {$p}
-                </div>
-            </div>";
+                </div>";
         }
         if($row['frq'] == 1)
         {
@@ -113,11 +120,11 @@
             $frq = "<h2>FRQ</h2><div id='frq_outer'>{$frqs}</div>";
         }
         //$topPic = '<img src='.$article['topPic'].'alt=\'pic\'>';
-        $topPic = '<img src= "./pictures/PROGRAMMINGCLUB1.png" alt= "pic" width="100%">';
+        $topPic = '<img id="topPic" src= "./pictures/PROGRAMMINGCLUB1.png" alt= "pic" width="100%">';
         $title = "<h1 id='club-title'>".$article['name']."</h1>";
-        $aboutUs = '<h2 id="aboutUs">About Us</h2><p id="aboutUs_p">'.$article['aboutus'].'</p>';
-        $contact = '<p>If you want to join the club or have a question, contact here! '.$article['email'].'</p>';
-        $meet = '<p>'.$article['meet'].'</p>';
+        $aboutUs = '<div id="aboutUs"><h3>About Us</h3><p>'.$article['aboutus'].'</p></div>';
+        $contact = '<h3>President</h3><img src="./pictures/unknown.png" alt="pic" /><br><p>Jisoo<br>'.$article['email'].'<br></p>';
+        $meet = '<div id="meetInfo"><h3>Meeting Info</h3><p>'.$article['meet'].'</p></div>';
     }
 ?>
 <script>
@@ -130,11 +137,13 @@
             btn.style.display = 'none';
             box.className = 'block';
             box.style.width = '90%';
+            box.style.transform = 'translateX(0%)';
         }
         else{
             btn.style.display = 'block';
             box.className = 'block-clicked';
-            box.style.width = window.innerWidth;
+            box.style.width = '80%';
+            //window.innerWidth
         }
         
     }
@@ -144,41 +153,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.typekit.net/nop3wuo.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="home.css">
+
     
     <title>FA Clubs</title>
 </head>
 <body>
-    <div id="title">
-        <img src="./pictures/schoolLogo-white.png" alt="logo"/>
-        <a id="header" href="index.php"><h1>Fryeburg Academy Clubs</h1></a>
-        <p id="logIn"><a href="logIn.html">Log In</a><a href="Create_account.php"> | Create account</a></p>
-    </div>
-    <div id="page" >
-        <div id="club-list">
-            <ul><?=$list?></ul>
-        </div>
+    <?php include("header.php"); ?>
+    <?php if(!isset($_GET['id'])){
+        include("home.html"); 
+        echo "<script>
+            const page = document.getElementById('title');
+            document.getElementById('home').style.marginTop = page.offsetHeight + 'px';
+        </script>";
+    } ?>
+    <div id="page">
+        <?=$topPic?>
+        <?=$title?>
+        <?=$btn?>
         <div id="page-content">
-            <?=$topPic?>
-            <?=$title?>
-            <?=$aboutUs?>
-            <?=$contact?>
-            <?=$meet?>
-            <?=$event?>
-            <?=$project?>
-            
-            <?=$frq?>
-
-            <?php
-                if(!isset($_GET['id'])){ include("home.html"); }
-            ?>
+                <div>
+                    <?=$aboutUs?>
+                    <div id="evn_block"><?=$event?></div>
+                    <?=$project?>
+                    <?=$frq?>
+                </div>
+                <div id="left-block"><div id="contact"><?=$contact?></div><?=$meet?></div>
         </div>
+        
     </div>
     <script>
         const title = document.getElementById("title");
         document.getElementById("page").style.paddingTop = title.offsetHeight + "px";
 
+        
         const radio = document.getElementsByClassName('radio');
         if(radio != null)
         {

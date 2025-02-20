@@ -21,6 +21,7 @@
         }
         #logInForm{
             border: black dashed 2px;
+            padding: 20px;
         }
         #logInForm p{
             margin: 20px;
@@ -28,32 +29,21 @@
         #logInForm #schoolEmail, #logInForm #password{
             width: 300px;
         }
-        #title{
-            background-color: #00468B;
-            width: 100%;
-            margin: 0px; padding: 10px;
-            position: fixed;
-            top: 0%;
-            display: grid;
-            grid-template-columns: 56px 85% 10%;
-            align-items: center;
-        }
-        #title img{
-            width: 56px;
-        }
-        #title h1{
-            padding-left: 10px;
+        #logInForm #error{
+            background-color: rgb(255, 0, 0, 0.4);
+            
+            color: red;
+            padding: 1px;
         }
     </style>
 </head>
 <body>
-    <div id="title">
-        <img src="./pictures/schoolLogo-white.png" alt="logo"/>
-        <a id="header" href="index.php"><h1>Fryeburg Academy Clubs</h1></a>
-        <div><p><a href="Create_account.php">Create Account |</a><a href="index.php"> Back</a></p></div>
-    </div>
+    <?php include("header.php"); ?>
     <div>
-        <form id="logInForm" action="logIn_process.php">
+        <form id="logInForm" action="logIn_process.php" method="post">
+            <?php if(isset($_GET['error'])){ ?>
+                <div id="error"><p><?=$_GET['error']?></p></div>
+            <?php } ?>
             <p><label for="schoolEmail">School email: </label><input id="schoolEmail" name="user_id" type="email" placeholder="example@fryeburgacademy.org"></p>
             <p><label for="password">Password: </label><input id="password" name="user_password" type="password" placeholder="8 ~ 16 characters" ></p>
             <p><input type="submit" style="margin-right: 10px;"></p>
