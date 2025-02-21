@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <?php
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
     $sql = "SELECT * FROM clubs;";
