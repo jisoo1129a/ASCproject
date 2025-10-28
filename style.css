@@ -141,7 +141,12 @@ h1, h2, h3, h4, p{
     text-align: center;
 }
 
-
+.frqSec h4{
+    font-size: 30px;
+}
+.frqSec p{
+    font-size: 20px;
+}
 #club-list ul{
     list-style-type: none;
 }

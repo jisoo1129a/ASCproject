@@ -1,5 +1,7 @@
 <?php
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
+    session_start();
+
     $sql = "SELECT COUNT(id) FROM clubs;";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
@@ -18,6 +20,5 @@
             mysqli_query($conn, $sql);
         }
     }
-
+    header('location: index.php');
 ?>
-<a href="index.php">back</a>

@@ -21,13 +21,15 @@
             </p>
         </div>
         <div>
-            <form action="add_club_process.php" method="get">
+            <form action="add_club_process.php" method="post" enctype="multipart/form-data">
                 <p>Email*: <input type="email" name="email" placeholder="example@fryeburgacademy.org"></p>
-                <p>Club name*: <input type="text" name="cName" placeholder="Club Name" required></p>
+                <p>Advisory or President Name*: <input type="text" name="adv_name" placeholder="name"></p>
+                <p>Advisory or President Picture: <input type="file" name="adv_pic" accept=".png, .jpg, .jpeg"></p>
+                <p>Club Name*: <input type="text" name="cName" placeholder="Club Name" required></p>
                 <textarea name="aboutUs" placeholder="Club description" required style="width: 50%;"></textarea>
-                <p>Representative picture*: <input type="file" name="topPic" accept=".png, .jpg, .jpeg"></p>
+                <p>Representative Picture*: <input type="file" name="topPic" accept=".png, .jpg, .jpeg"></p>
                 <p>Meet: <input type="text" name="meet" placeholder="e.g. We meet every Wednesday in the computer lab" style="width: 50%;"></p>
-                <p>Extra materials:
+                <p>Extra Materials:
                     <input type="checkbox" id="events" name="events" onclick="eventForm(0)"><label for="events">Upcoming events section</label>
                     <input type="checkbox" id="projects" name="projects" onclick="projectForm(0)"><label for="projects">Project section</label>
                     <input type="checkbox" id="frq" name="frq" onclick="frqForm(0)"><label for="frq">FRQ section</label>
@@ -36,9 +38,8 @@
                 <div id="projectsInput"></div>
                 <div id="frqInput"></div>
 
-                <input type="submit">
+                <div><input type="submit"><button style="margin-left: 20px;" onclick="history.back();">back</button></div>
             </form>
-            <a href="index.php">back</a>
         </div>
     </div>
     
@@ -55,8 +56,8 @@
             for(let i = 0; i < focus; i++)
             {
                 text = `
-                <p>question: <input type="text" name="fQuestion_${i}" placeholder="question" required></p>\
-                <p>answert: <input type="text" name="fAnswer_${i}" placeholder="answer" requried></p>`;
+                <p>Question: <input type="text" name="fQuestion_${i}" placeholder="Question" required></p>\
+                <p>Answert: <input type="text" name="fAnswer_${i}" placeholder="Answer" requried></p><hr />`;
 
                 li.push(text);
             }
@@ -74,9 +75,10 @@
             for(let i = 0; i < focus; i++)
             {
                 text = `
-                <p>project name: <input type="text" name="pName_${i}" placeholder="project name" required></p>\
-                <p>project date: <input type="date" name="pDate_${i}"></p>\
-                <p>project description: <input type="text" name="pDescription_${i}" placeholder="project description"></p>`;
+                <p>Project Name: <input type="text" name="pName_${i}" placeholder="Project Name" required></p>\
+                <p>Project Date: <input type="date" name="pDate_${i}"></p>\
+                <p>Project Description: <input type="text" name="pDescription_${i}" placeholder="Project Description"></p>\
+                <p>Project Picture: <input type="file" name="p_pictures_${i}" accept=".png, .jpg, .jpeg"></p><hr />`;
 
                 li.push(text);
             }
@@ -96,7 +98,7 @@
                 text = `
                 <p>event name: <input type="text" name="eName_${i}" placeholder="event name" required></p>\
                 <p>event date: <input type="date" name="eDate_${i}"></p>\
-                <p>event description: <input type="text" name="eDescription_${i}" placeholder="event description"></p>`;
+                <p>event description: <input type="text" name="eDescription_${i}" placeholder="event description"></p><hr />`;
 
                 li.push(text);
             }

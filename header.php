@@ -1,5 +1,7 @@
 <?php
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
+    session_start();
+    
     $sql = "SELECT * FROM clubs;";
     $result = mysqli_query($conn, $sql);
     $list = '';
@@ -64,7 +66,32 @@
     <div id="title">
         <img src="./pictures/SchoolLogo.png" alt="logo"/>
         <a id="header" href="index.php"><h1>FRYEBURG ACADEMY</h1></a>
-        <p id="logIn"><a href="logIn.php">Log In</a><a href="Create_account.php"> | Create Account</a></p>
+        <?php
+
+
+            $htm = '';
+
+            if($_SESSION['UserInfo'] == null)
+            {
+                $htm = '<p id="logIn"><a href="logIn.php">Log In</a></p>';
+
+                
+            }
+            else
+            {
+                if($_SESSION['UserInfo'] == 'jisoof.lee25@fryeburgacademy.rog')
+                {
+                    $htm = '<p id="logIn"><a href="logout.php">Log out</a><a href="Create_account.php"> | Create Account</a></p>';
+                }
+                else
+                {
+                    $htm = '<p id="logIn"><a href="logout.php">Log out</a></p>';
+                }
+            }
+
+
+            echo $htm;
+        ?>
     </div>
     <div id="side-menu">
         

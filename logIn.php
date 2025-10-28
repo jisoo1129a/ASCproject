@@ -37,7 +37,10 @@
     </style>
 </head>
 <body>
-    <?php include("header.php"); ?>
+    <?php
+    session_start();
+    include("header.php");
+    ?>
     <div>
         <form id="logInForm" action="logIn_process.php" method="post">
             <?php if(isset($_GET['error'])){ ?>

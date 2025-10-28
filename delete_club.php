@@ -1,5 +1,7 @@
 <?php
 $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
+session_start();
+
 $sql = "SELECT * FROM clubs;";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_array($result))
@@ -21,9 +23,9 @@ while($row = mysqli_fetch_array($result))
 </head>
 <body>
     <h3>Choose clubs you want to delete</h3>
-    <form action="delete_process.php">
+    <form action="delete_process.php" method="get">
         <?=$list?>
-        <input type="submit">
+        <div><input type="submit"><button style="margin-left: 20px;" onclick="history.back();">back</button></div>
     </form>
     
     

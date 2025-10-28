@@ -1,5 +1,6 @@
 <?php
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +50,12 @@
     <?php include("header.php"); ?>
     <div>
         <form id="logInForm" action="Create_account_process.php" method="post">
+            <?php
+
+                if($_SESSION['UserInfo'] == null){
+                    header('location: index.php');
+                }
+            ?>
             <?php if(isset($_GET['error'])){ ?>
                 <div id="error"><p><?=$_GET['error']?></p></div>
             <?php } ?>

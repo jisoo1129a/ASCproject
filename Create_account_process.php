@@ -1,5 +1,6 @@
 <?php
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
+    session_start();
     
     if(isset($_POST['user_id']) && isset($_POST['user_password1']) && isset($_POST['user_password2']))
     {
@@ -31,8 +32,10 @@
         else
         {
             $user_password = password_hash($user_password1, PASSWORD_DEFAULT);
+            
             $sql_same_id = "SELECT * FROM managers WHERE USER_ID = '$user_id'";
             $result = mysqli_query($conn, $sql_same_id);
+
             if(mysqli_num_rows($result) > 0)
             {
                 header("location: Create_account.php?error=id already exists.");

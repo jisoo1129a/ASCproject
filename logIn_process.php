@@ -1,6 +1,6 @@
 <?php
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
-
+    session_start();
     //searching
     
         
@@ -28,17 +28,15 @@
             $sql = "SELECT * FROM managers WHERE USER_ID='$user_id'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
+
             if($row['USER_ID'] != null)
             {
                 if(password_verify($user_password, $row['USER_PASSWORD']))
                 {
-                    echo'
-                    <form id="logIn" action="index.php" method="post">
-                        <p>Successfully done. Do you want to go back?</p>
-                        <p><textarea name="user_id" hidden>'.$row["USER_ID"].'</textarea></p>
-                        <input name="logIn" value="back" type="submit">
-                    </form>
-                    ';
+                    $_SESSION['UserInfo'] = $user_id;
+                    header("location: index.php");
+                    //JWT jason web tokens
+                    //session php
                 }
                 else{
                     header("location: logIn.php?error=wrong id or password");

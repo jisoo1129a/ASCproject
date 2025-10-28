@@ -1,29 +1,33 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <?php
+
+    session_start();
+
     $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
 
-    $login_state = '';
+    $login_state = $_SESSION['UserInfo'];
     $btn = '';
-    if(isset($_POST['logIn']))
-    {
-        $login_state = $_POST['user_id'];
-    }
-    if($_POST['logIn'] == 'loged_out')
-    {
-        $login_state = '';
-    }
-    if($login_state != '')
-    {
-        $btn = '<div><button><a href="add_club.php">Add club</a></button>
-        <button><a href="edit_info.php">Edit information</button>
-        <button><a href="delete_club.php">Delete Club</a></button></div>';
-    }
+    
+
 
     //id, supervise
 
-    $sql = "SELECT * FROM clubs;";
-    $result = mysqli_query($conn, $sql);
     
+    if($login_state != null)
+    {
+        $sql = "SELECT ID FROM managers WHERE USER_ID='$login_state';";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+
+        if($row != null && isset($_GET['id']))
+        {
+            $btn = '<div><button><a href="add_club.php">Add Club</a></button>
+            <button><a href="edit_info.php?id='.$_GET['id'].'">Edit Information</button>
+            <button><a href="delete_club.php">Delete Club</a></button></div>';
+        }
+    }
+  
+
     
     $topPic = '';
     $title = '';
@@ -32,6 +36,9 @@
     $meet = '';
     $event = '';
     $project = '';
+
+    // $sql = "SELECT * FROM clubs;";
+    // $result = mysqli_query($conn, $sql);
 
     if(isset($_GET['id']))
     {
@@ -43,7 +50,10 @@
             'name' => $row['cName'],
             'aboutus' => $row['aboutUs'],
             'meet' => $row['meet'],
-            'email' => $row['email']
+            'email' => $row['email'],
+            'top_pic' => $row['topImg'],
+            'adv_pic' => $row['advImg'],
+            'adv_name' => $row['adv_name']
         );
         
         $events = '';
@@ -95,7 +105,7 @@
                     'des' => $pRow['pDescription'],
                     'url' => $pRow['pUrl']
                 );
-                array_push($projects, "<div class='block' id='block_{$i}' onclick='maximize({$i})'><img src='./pictures/BIGBAND1.png' width='100%' alt='pic'><h4>{$p['name']}</h4><button id='btn_{$i}' style=\"display: none;\">X</button></div>");
+                array_push($projects, "<div class='block' id='block_{$i}' onclick='maximize({$i})'><img src='{$p['url']}' width='100%' alt='pic'><h4>{$p['name']}</h4><button id='btn_{$i}' style=\"display: none;\">X</button></div>");
                 $i++;
             }
             $p = '';
@@ -116,17 +126,20 @@
             $i = 1;
             while($fRow = mysqli_fetch_array($result))
             {
-                $frqs = $frqs.'<div class="inner"><h4>'.$i.'. '.$fRow['fQuestion'].'</h4><p>'.$fRow['fAnswer'].'</p></div>';
+                $frqs = $frqs.'<div class="inner frqSec"><h4>'.$i.'. '.$fRow['fQuestion'].'</h4><p>'.$fRow['fAnswer'].'</p></div>';
+                $i++;
             }
             $frq = "<h2>FRQ</h2><div id='frq_outer'>{$frqs}</div>";
         }
         //$topPic = '<img src='.$article['topPic'].'alt=\'pic\'>';
-        $topPic = '<img id="topPic" src= "./pictures/PROGRAMMINGCLUB1.png" alt= "pic" width="100%">';
+        $topPic = '<img id="topPic" src= "'.$article['top_pic'].'" alt= "pic" width="100%">';
         $title = "<h1 id='club-title'>".$article['name']."</h1>";
         $aboutUs = '<div id="aboutUs"><h3>About Us</h3><p>'.$article['aboutus'].'</p></div>';
-        $contact = '<h3>President</h3><img src="./pictures/unknown.png" alt="pic" /><br><p>Jisoo<br>'.$article['email'].'<br></p>';
+        if($article['adv_pic'] == null){$article['adv_pic'] = './pictures/unknown.png'; }
+        $contact = '<h3>President</h3><img src="'.$article['adv_pic'].'" alt="pic" /><br><p>'.$article['adv_name'].'<br>'.$article['email'].'<br></p>';
         $meet = '<div id="meetInfo"><h3>Meeting Info</h3><p>'.$article['meet'].'</p></div>';
     }
+
 ?>
 <script>
     function maximize(num)
@@ -162,18 +175,19 @@
     <title>FA Clubs</title>
 </head>
 <body>
-    <?php include("header.php"); ?>
-    <?php if(!isset($_GET['id'])){
-        include("home.html"); 
-        echo "<script>
-            const page = document.getElementById('title');
-            document.getElementById('home').style.marginTop = page.offsetHeight + 'px';
-        </script>";
-    } ?>
+    <?php include("header.php");?>
+   
     <div id="page">
         <?=$topPic?>
         <?=$title?>
-        <?=$btn?>
+        <?php if(!isset($_GET['id'])){
+            include("home.html"); 
+        }
+        else
+        {
+            echo $btn;
+        }
+    ?>
         <div id="page-content">
                 <div>
                     <?=$aboutUs?>
