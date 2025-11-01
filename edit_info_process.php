@@ -9,13 +9,15 @@ $filtered_info = array(
     'name' => mysqli_real_escape_string($conn, $_POST['c_name']),
     'aboutUs' => mysqli_real_escape_string($conn, $_POST['c_about']),
     'meet'=>mysqli_real_escape_string($conn, $_POST['c_meet']),
-    'email'=>mysqli_real_escape_string($conn, $_POST['c_email'])
+    'email'=>mysqli_real_escape_string($conn, $_POST['c_email']),
+    'adv_name'=> mysqli_real_escape_string($conn, $_POST['c_adv_name'])
 );
 $sql = "
     UPDATE clubs SET cName='{$filtered_info['name']}',
                     aboutUs='{$filtered_info['aboutUs']}',
                     meet='{$filtered_info['meet']}',
                     email='{$filtered_info['email']}',
+                    adv_name='{$filtered_info['adv_name']}',
                     lastUpdated=NOW()
     WHERE id={$filtered_info['id']};
 ";
