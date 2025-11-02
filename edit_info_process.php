@@ -2,8 +2,6 @@
 $conn = mysqli_connect("localhost", "demo", "00000000", "CLUB", 3306);
 session_start();
 
-
-
 $filtered_info = array(
     'id' => mysqli_real_escape_string($conn, $_POST['c_identification']),
     'name' => mysqli_real_escape_string($conn, $_POST['c_name']),
@@ -22,11 +20,9 @@ $sql = "
     WHERE id={$filtered_info['id']};
 ";
 
-
 mysqli_query($conn, $sql);
 
 $id = $filtered_info['id'];
-
 $upload_dir = 'pictures/';
 if(isset($_FILES['d_top_pic']) && $_FILES['d_top_pic']['error'] != 4)
 {

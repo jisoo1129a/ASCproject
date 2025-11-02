@@ -156,7 +156,7 @@
         else{
             btn.style.display = 'block';
             box.className = 'block-clicked';
-            box.style.width = '80%';
+            box.style.width = '60%';
             //window.innerWidth
         }
         

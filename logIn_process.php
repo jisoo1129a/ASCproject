@@ -35,8 +35,6 @@
                 {
                     $_SESSION['UserInfo'] = $user_id;
                     header("location: index.php");
-                    //JWT jason web tokens
-                    //session php
                 }
                 else{
                     header("location: logIn.php?error=wrong id or password");

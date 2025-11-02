@@ -150,7 +150,7 @@ use function PHPSTORM_META\type;
                             $output = $output.'<p style= "margin-bottom: 30px;">'.$i.'<br>';
                             $output = $output.'<input name="p_identification_'.$i.'" value="'.$projects[$i - 1]['id'].'" hidden>';
                             $output = $output.'<input type="text" class="d_text_box" name="p_name_'.$i.'" value="'.$projects[$i - 1]['name'].'"><br>';
-                            $output = $output.'<input type="date" name="p_date_'.$i.'" value='.$projects[$i - 1]['date'].'><br>';
+                            $output = $output.'<input type="date" name="p_date_'.$i.'" value="'.$projects[$i - 1]['date'].'"><br>';
                             $output = $output.'<input type="text" name="p_des_'.$i.'" class="d_text_box" value="'.$projects[$i - 1]['des'].'"><br>';
                             $output = $output.'<label for ="p_picture'.$i.'">Project Picture: </label><input type="file" id="p_picture'.$i.'" name="p_picture'.$i.'"></p>';
                         }
